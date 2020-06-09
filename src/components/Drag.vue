@@ -33,26 +33,6 @@
               </div>
             </transition-group>
           </draggable>
-
-          <draggable
-            :listitems="listitems"
-            :disabled="!enabled"
-            class="list-group d-flex"
-            ghost-class="ghost"
-            :move="checkMove"
-            @start="dragging = true"
-            @end="dragging = false"
-          >
-            <transition-group class="listitems mx-200">
-              <div v-for="(item, index) in listitems" :key="index">
-                <ul data-toggle="modal" data-target="#add">
-                  <li>
-                    <i class="fa fa-pencil-square-o" aria-hidden="true">{{ item.link }}</i>
-                  </li>
-                </ul>
-              </div>
-            </transition-group>
-          </draggable>
         </div>
         <!-- Grid column -->
         <div class="col-4">
@@ -88,6 +68,11 @@
                             placeholder="enter menu name"
                           />
                         </div>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          @click="openDialogBox"
+                        >Edit links</button>
                         <div class="form-group">
                           <label for="url">Enter Url name</label>
                           <input
