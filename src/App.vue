@@ -1,15 +1,16 @@
 <template>
-  <dragable></dragable>
+  <Transition></Transition>
 </template>
 
 <script>
-import dragable from "./components/dragable.vue";
+import Transition from "./components/Transition.vue";
 //import Linkitem from "./components/Linkitem.vue";
 
 export default {
   name: "app",
   components: {
-    dragable
+    //Linkitem
+    Transition
   }
 };
 </script>
