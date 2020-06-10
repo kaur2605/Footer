@@ -115,12 +115,14 @@
         >
           <transition-group type="transition" :list="!drag ? 'flip-list' : null">
             <li class="list-group-item" v-for="(element,index) in list" :key="index">
-              <i
-                :class="          element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin' "
-                @click="element.fixed = !element.fixed"
-                aria-hidden="true"
-              ></i>
-              {{ element.menu}}
+              <span class="span_name">
+                <i
+                  :class="          element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin' "
+                  @click="element.fixed = !element.fixed"
+                  aria-hidden="true"
+                ></i>
+                {{ element.menu}}
+              </span>
               <div class="pencil">
                 <button type="button" class="btn btn-info">
                   <i
@@ -130,8 +132,12 @@
                   >&nbsp;&nbsp;</i>
                 </button>
                 &nbsp;&nbsp;
-                <button type="button" class="btn btn-danger">
-                  <i class="fa fa-trash trash" aria-hidden="true" @click="DeleteData(index)"></i>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  @click="DeleteList1(index)"
+                >
+                  <i class="fa fa-trash trash" aria-hidden="true"></i>
                 </button>
               </div>
             </li>
@@ -147,12 +153,14 @@
         >
           <transition-group type="transition" :list2="!drag ? 'flip-list' : null">
             <li class="list-group-item" v-for="(element,index) in list2" :key="index">
-              <i
-                :class="          element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin' "
-                @click="element.fixed = !element.fixed"
-                aria-hidden="true"
-              ></i>
-              {{ element.menu}}
+              <span class="span_name">
+                <i
+                  :class="          element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin' "
+                  @click="element.fixed = !element.fixed"
+                  aria-hidden="true"
+                ></i>
+                {{ element.menu}}
+              </span>
               <div class="pencil">
                 <button type="button" class="btn btn-info">
                   <i
@@ -162,8 +170,12 @@
                   >&nbsp;&nbsp;</i>
                 </button>
                 &nbsp;&nbsp;
-                <button type="button" class="btn btn-danger">
-                  <i class="fa fa-trash trash" aria-hidden="true" @click="DeleteData(index)"></i>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  @click="DeleteList2(index)"
+                >
+                  <i class="fa fa-trash trash" aria-hidden="true"></i>
                 </button>
               </div>
             </li>
@@ -179,12 +191,14 @@
         >
           <transition-group type="transition" :list3="!drag ? 'flip-list' : null">
             <li class="list-group-item" v-for="(element,index) in list3" :key="index">
-              <i
-                :class="          element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin' "
-                @click="element.fixed = !element.fixed"
-                aria-hidden="true"
-              ></i>
-              {{ element.menu}}
+              <span class="span_name">
+                <i
+                  :class="          element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin' "
+                  @click="element.fixed = !element.fixed"
+                  aria-hidden="true"
+                ></i>
+                {{ element.menu}}
+              </span>
               <div class="pencil">
                 <button type="button" class="btn btn-info">
                   <i
@@ -194,8 +208,12 @@
                   >&nbsp;&nbsp;</i>
                 </button>
                 &nbsp;&nbsp;
-                <button type="button" class="btn btn-danger">
-                  <i class="fa fa-trash trash" aria-hidden="true" @click="DeleteData(index)"></i>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  @click="DeleteList3(index)"
+                >
+                  <i class="fa fa-trash trash" aria-hidden="true"></i>
                 </button>
               </div>
             </li>
@@ -287,6 +305,10 @@ export default {
       this.list = this.list.sort((a, b) => a.order - b.order);
     },
     openDialogBox() {
+      this.editing = false;
+      this.menu = "";
+      this.url = "";
+      this.checked = "";
       $("#add").modal("show");
     },
     opentextbox() {
@@ -319,18 +341,26 @@ export default {
       $("#add").modal("show");
     },
 
-    DeleteData(index) {
+    DeleteList1(index) {
       this.list.splice(index, 1);
+    },
+
+    DeleteList2(index) {
+      this.list2.splice(index, 1);
+    },
+    DeleteList3(index) {
+      this.list3.splice(index, 1);
     },
 
     EditMenu() {
       $("#add").modal("hide");
-      let menuindex = this.list.findIndex(
+
+      /*let menuindex = this.list.findIndex(
         element => element.menu === this.editData.menu
       );
 
       this.editing = false;
-      this.list[menuindex] = this.editData;
+      this.list[menuindex] = this.editData;*/
 
       this.menu = "";
       this.url = "";
@@ -380,6 +410,7 @@ export default {
 .heading {
   border: 1px solid;
   background-color: rgb(199, 196, 196);
+  position: relative;
 }
 .list-group-item {
   cursor: move;
@@ -388,14 +419,21 @@ export default {
   margin-right: 50px;
   border: 1px solid;
   background-color: rgb(199, 196, 196);
+  display: flex;
+  justify-content: space-between;
 }
 .pencil {
   padding-left: 170px;
   margin-left: 50px;
-  margin-right: 0;
   float: right;
+
   margin-top: 0;
 }
+
+.span_name {
+  align-self: center;
+}
+
 .list-group-item i {
   cursor: pointer;
 }
