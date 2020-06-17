@@ -1,27 +1,16 @@
 <template>
-  <div>
-    <drag>
-      <div class="overlay">
-        <div class="modal">
-          <span>Add Menu</span>
-          <input type="text" />
-
-          <div>
-            <button>Add</button>
-          </div>
-        </div>
-      </div>
-    </drag>
-  </div>
+  <Transition></Transition>
 </template>
 
 <script>
-import Drag from "./components/Drag.vue";
+import Transition from "./components/Transition.vue";
+//import Linkitem from "./components/Linkitem.vue";
 
 export default {
   name: "app",
   components: {
-    Drag
+    //Linkitem
+    Transition
   }
 };
 </script>

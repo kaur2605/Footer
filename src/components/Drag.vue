@@ -3,14 +3,14 @@
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left bg-secondary">
       <!-- Grid row -->
-      <div class="row">
+      <div class="row h-100">
         <!-- Grid column -->
         <div class="col-md-2 mt-md-0 mt-3">
           <!-- Content -->
           <h5 class="text-uppercase">Footer Content</h5>
-          <p>Here add contact details</p>
+          <p>some text</p>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 h-100">
           <draggable
             :list="list"
             :disabled="!enabled"
@@ -21,16 +21,15 @@
             @end="dragging = false"
           >
             <transition-group class="listitem">
-              <div class="list" v-for="(element, index) in list" :key="index">
-                <h5 @click="editMenu(element, index)">
-                  <div class="form-group">
-                    <div class="col-4">
-                      <h5 data-toggle="modal" data-target="#add">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true">{{ element.menu }}</i>
-                      </h5>
-                    </div>
-                  </div>
-                </h5>
+              <div class="list card" v-for="(element, index) in list" :key="index">
+                <h3
+                  data-toggle="modal"
+                  data-target="#add"
+                  @click="editMenu(element, index)"
+                  class="card-header"
+                >
+                  <i class="fa fa-pencil-square-o" aria-hidden="true">{{ element.menu }}</i>
+                </h3>
               </div>
             </transition-group>
           </draggable>
@@ -69,6 +68,11 @@
                             placeholder="enter menu name"
                           />
                         </div>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          @click="openDialogBox"
+                        >Edit links</button>
                         <div class="form-group">
                           <label for="url">Enter Url name</label>
                           <input
@@ -138,6 +142,11 @@ export default {
         { menu: "Info", url: "/test", checked: false },
         { menu: "Account", url: "/", checked: false },
         { menu: "Social", url: "/", checked: false }
+      ],
+      listitems: [
+        { link: "facebook", url: "" },
+        { link: "twitter", url: "" },
+        { link: "instagram", url: "" }
       ],
       dragging: false,
       checked: false,
